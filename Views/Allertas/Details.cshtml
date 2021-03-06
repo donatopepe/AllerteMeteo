@@ -1,0 +1,90 @@
+﻿@model MeteoAlert.Models.Allerta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Allerta</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ora)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ora)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prectot3h)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prectot3h)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cp1h)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cp1h)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ws10m)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ws10m)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ws32m1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ws32m1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ws32m2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ws32m2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ws57m1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ws57m1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ws57m2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ws57m2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sigww)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sigww)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phenomena)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phenomena)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateSent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateSent)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

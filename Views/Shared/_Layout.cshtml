@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MeteoAlert</title>
+    <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+    <header>
+
+        <div class="row h6 text-center color-bg-logo">
+            <div class="col-lg-3 align-self-center">
+                Gestione allerta meteo<br />&copy; 2020 - MeteoAlert - Version : @AppVersionService.Version
+            <p>Server: @AppVersionService.MachineName</p>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Meteo Alert</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EmailMessages" asp-action="Index">Email archiviate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ContattoInviatoes" asp-action="Index">Messaggi Inviati</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Rubricas" asp-action="Index">Rubrica destinatari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Allertas" asp-action="Index">Ultima Allerta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bollettinoes" asp-action="Index">Ultimo Bollettino</a>
+                        </li>
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+                <div class="col-3">
+                    <a href="mailto:dnt.ppe@gmail.com&subject=AttrOleo:%20&body=Contenuto%20del%20messaggio%20di%20posta">dr.ing.Pepe Donato</a>
+                </div>
+                <div class="col-3">
+                    <a href="mailto:dnt.ppe@gmail.com&subject=AttrOleo:%20&body=Contenuto%20del%20messaggio%20di%20posta">Assistenza</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*<script src="~/js/stato.js"></script>
+        <script src="~/js/categoria.js"></script>*@
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
