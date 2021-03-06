@@ -1,0 +1,141 @@
+﻿@model MeteoAlert.Models.Bollettino
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bollettino</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sito)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sito)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Latitudine)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Latitudine)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Longitudine)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Longitudine)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Elevazione)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Elevazione)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Scadh)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Scadh)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tp3h)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tp3h)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tp3h30mm)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tp3h30mm)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cp1h)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cp1h)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cp1h20mm)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cp1h20mm)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind10m)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind10m)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind10m1544ms)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind10m1544ms)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind32m)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind32m)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind32m1667ms)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind32m1667ms)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind32m20ms)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind32m20ms)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind57m)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind57m)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind57m1667ms)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind57m1667ms)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wind57m20ms)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wind57m20ms)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ww)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ww)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phenomena)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phenomena)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateSent)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateSent)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

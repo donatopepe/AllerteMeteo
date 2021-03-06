@@ -1,0 +1,216 @@
+﻿@*@model IEnumerable<MeteoAlert.Models.EmailMessage>*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromAddresses[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSent)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageNumber)
+                </td>
+                <td>
+                    @Html.Raw(item.FromAddresses[0].Name)
+                </td>
+                <td>
+                    @Html.Raw(item.Subject)
+                </td>
+                <td>
+                    @Html.Raw(item.Content)
+                </td>
+                <td>
+                    @Html.Raw(item.DateSent)
+                </td>
+                @foreach (var allegato in item.Attachments)
+                {
+                    <td>
+                        @Html.Raw(allegato.FileName)
+
+                        @Html.Raw(allegato.ContentType)
+                    </td>
+                }
+            </tr>
+        }
+    </table>*@
+
+@model List<MeteoViewModel>
+
+@{
+    decimal Zona1 = 0;
+    decimal Zona2 = 0;
+    decimal Zona3 = 0;
+}
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+    <h3 style="color:blue;">
+        <div class="row justify-content-center align-items-center align-self-center">
+            <div class="col-md-6">
+                Sinottico delle allerte meteo previste ai fini della gestione delle attività
+            </div>
+            <!--
+                PRIMA: CONTROLLAVA LA PRESENZA DI SCARICHE ELETTRICHE NELL'ULTIMO RECORD DELLA TABELLA EVENTI
+                ORA: LA VISUALIZZAZIONE DELL'IMMAGINE E' LEGATA ALLA PRESENZA DI UNA SEQUENZA IN CORSO
+            -->
+            @if (Convert.ToBoolean(ViewData["isAllarmeInCorso"]))
+            {
+            <div class="col-md-3 blink_me">
+                <h1 style="color:red;">
+                    <img class="img-responsive" src="img/lightning-bolt-png-34117.png" alt="Allerta Lampinet" width="50" height="50">
+                    Allerta Lampinet
+                    <audio>
+                        <source src="Sirena.wav" />
+                    </audio>
+                </h1>
+            </div>
+            }
+
+        </div>
+    </h3>
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+<div class="container bg-info border border-dark">
+    @foreach (var giorno in ViewBag.Grafico)
+    {
+        <div class="row justify-content-center align-items-center align-self-center">
+            <p>@giorno[0][0]</p>
+        </div>
+        <div class="row rounded-0 justify-content-center align-items-center align-self-center">
+
+            @foreach (var ora in giorno)
+            {
+                <button type="button" class="btn btn-lg @ora[4] rounded-0" data-toggle="popover" data-html="true" data-placement="bottom" title="@ora[2]" data-content="@ora[3]">@ora[1]</button>
+
+            }
+
+        </div>
+    }
+    <p>
+        <dl>
+            <dt>1.	Grafico con presenza allarmi contenuti nell’ ultima allerta meteo integrati con quelli elaborati dall’ultimo bollettino meteo, in base alle seguenti condizioni:</dt>
+            <dd>-   Velocità del vento a 32 metri o 57 m pari o superiore a 20 m/s (72Km/h);</dd>
+            <dd>-   Velocità del vento a 10 m pari o superiore a 15.44 m/s (55.5 Km/h) o velocità del vento a 32 o 57 metri superiore a 16.67 m/s (60Km/h) con presenza contemporanea di fenomeni di “Precipitazioni convettive 1 h precedente > 20 mm” o di “precipitazioni totali 3 h precedente > 30 mm”, o di “phenomena - presenza di temporali e rovesci”;</dd>
+            <dt>2.	Nel rispetto di quanto definito dalle procedure operative, le attività che prevedono l’utilizzo delle gru di banchina dovranno essere preventivamente sospese a partire dall’ora precedente a quella in cui è segnalata la condizione di allerta (rossa), fino all’ora successiva a quella in cui la stessa condizione di allerta  termina. Al difuori di tale intervallo l’esercizio delle gru è determinato dalla sussistenza delle condizioni previste dalle procedure vigenti.</dt>
+            <dt>3.	A  supporto delle informazioni contenute nel sinottico, in ogni momento, è consultabile la pagina MeteoAM , dalla quale é possibile verificare, con aggiornamento costante, le immagini meteo satellitari (ogni 5 min) nonché le immagini riportanti le eventuali  fulminazioni registrate nell’area osservata (ogni 5 min), per seguire l’evolvere di eventuali fenomeni in corso.</dt>
+            <dt>4.  Con allerta Lampinet fermare le grù e le altre macchine di carico/scarico nave  e riprendere le attività dopo un’ora dall’ultima fulminazione.</dt>
+        </dl>
+    </p>
+    <h3>
+        <div class="alert alert-info" role="alert">
+            Velocità massima del vento rilevata da @ViewBag.Subject: @ViewBag.max_vento Km/h
+            <br />
+            Per maggiori dettagli, consultare il relativo bollettino nella pagina dedicata.
+        </div>
+    </h3>
+
+</div>
+
+
+
+@if (true)
+{
+
+    <br />
+    <div class="container bg-info border border-dark">
+        <br />
+        <h3>
+            <div class="alert" role="alert">
+                Eventi Lampi
+            </div>
+        </h3>
+
+        <div class="container-fluid justify-content-center align-items-center align-self-center">
+
+            <!-- griglia ultimi lampinet
+            ----------------------------->
+            @{
+                string ultEventoZona1 = (ViewData["UltEventoZona1"].ToString() != "-") ? Convert.ToDateTime(ViewData["UltEventoZona1"]).ToString("dd/MM HH:mm:ss") : "-";
+            }
+
+            @if (@Model[0].ScaricheElettriche)
+            {
+                <div class="row content alert-warning blink_me">
+                    <div class="col-md-6">
+                        <h5>Ultimo Evento Scariche Elettriche</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>@ultEventoZona1</h5>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row content alert-info">
+                    <div class="col-md-6">
+                        <h5>Ultimo Evento Scariche Elettriche</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>@ultEventoZona1</h5>
+                    </div>
+                </div>
+            }
+            <br />
+            <!--fine griglia ultimi lampinet -->
+
+            <div class="row content">
+                <div class="col-md-3 bg-danger text-white font-weight-bold">DataOra</div>
+                @*<div class="col-md-6 bg-danger text-white font-weight-bold">Immagine elaborata</div>*@
+                <div class="col-md-3 bg-danger text-white font-weight-bold">Scariche elettriche</div>
+                <div class="col-md-3 bg-danger text-white font-weight-bold">Conteggio Invio SMS</div>
+            </div>
+
+
+
+            @foreach (MeteoViewModel evento in @Model)
+            {
+                <form method="post" enctype="multipart/form-data">
+                    <hr>
+                    <div class="row content">
+                        <div class="col-md-3">
+                            @Convert.ToDateTime(evento.DataOra).ToString("dd-MM-yyyy HH:mm:ss")
+                        </div>
+                        @*<div class="col-md-6">
+                                @evento.NomeImmagine
+                            </div>*@
+                        <div class="col-md-3">
+                            @evento.ScaricheElettriche
+                        </div>
+                        <div class="col-md-3">
+                            @evento.ConteggioInvioSMS
+                        </div>
+                    </div>
+                </form>
+            }
+            <hr />
+        </div>
+    </div>
+}
+
+<meta http-equiv="refresh" content="300">
+
+
+

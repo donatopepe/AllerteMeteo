@@ -1,0 +1,128 @@
+﻿@model MeteoAlert.Models.Bollettino
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bollettino</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Sito" class="control-label"></label>
+                <input asp-for="Sito" class="form-control" />
+                <span asp-validation-for="Sito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitudine" class="control-label"></label>
+                <input asp-for="Latitudine" class="form-control" />
+                <span asp-validation-for="Latitudine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitudine" class="control-label"></label>
+                <input asp-for="Longitudine" class="form-control" />
+                <span asp-validation-for="Longitudine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Elevazione" class="control-label"></label>
+                <input asp-for="Elevazione" class="form-control" />
+                <span asp-validation-for="Elevazione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Scadh" class="control-label"></label>
+                <input asp-for="Scadh" class="form-control" />
+                <span asp-validation-for="Scadh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tp3h" class="control-label"></label>
+                <input asp-for="Tp3h" class="form-control" />
+                <span asp-validation-for="Tp3h" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tp3h30mm" class="control-label"></label>
+                <input asp-for="Tp3h30mm" class="form-control" />
+                <span asp-validation-for="Tp3h30mm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cp1h" class="control-label"></label>
+                <input asp-for="Cp1h" class="form-control" />
+                <span asp-validation-for="Cp1h" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cp1h20mm" class="control-label"></label>
+                <input asp-for="Cp1h20mm" class="form-control" />
+                <span asp-validation-for="Cp1h20mm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind10m" class="control-label"></label>
+                <input asp-for="Wind10m" class="form-control" />
+                <span asp-validation-for="Wind10m" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind10m1544ms" class="control-label"></label>
+                <input asp-for="Wind10m1544ms" class="form-control" />
+                <span asp-validation-for="Wind10m1544ms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind32m" class="control-label"></label>
+                <input asp-for="Wind32m" class="form-control" />
+                <span asp-validation-for="Wind32m" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind32m1667ms" class="control-label"></label>
+                <input asp-for="Wind32m1667ms" class="form-control" />
+                <span asp-validation-for="Wind32m1667ms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind32m20ms" class="control-label"></label>
+                <input asp-for="Wind32m20ms" class="form-control" />
+                <span asp-validation-for="Wind32m20ms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind57m" class="control-label"></label>
+                <input asp-for="Wind57m" class="form-control" />
+                <span asp-validation-for="Wind57m" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind57m1667ms" class="control-label"></label>
+                <input asp-for="Wind57m1667ms" class="form-control" />
+                <span asp-validation-for="Wind57m1667ms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wind57m20ms" class="control-label"></label>
+                <input asp-for="Wind57m20ms" class="form-control" />
+                <span asp-validation-for="Wind57m20ms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ww" class="control-label"></label>
+                <input asp-for="Ww" class="form-control" />
+                <span asp-validation-for="Ww" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phenomena" class="control-label"></label>
+                <input asp-for="Phenomena" class="form-control" />
+                <span asp-validation-for="Phenomena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateSent" class="control-label"></label>
+                <input asp-for="DateSent" class="form-control" />
+                <span asp-validation-for="DateSent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

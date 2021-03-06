@@ -1,0 +1,165 @@
+﻿@model IEnumerable<MeteoAlert.Models.Allerta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>
+        <dl>
+            <dt>Allerte meteo previste in un area circolare di raggio 20 NM centrata sulle coordinate Lat. 40.48N Lon. 17.21E (% Area interessata dall'allerta)</dt>
+            <dd>- non esaustive per la programmazione delle attività</dd>
+            <dd>- fare riferimento alla pagina Home</dd>
+        </dl>
+    </h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+<div class="container bg-info border border-dark">
+    @foreach (var giorno in ViewBag.Grafico)
+    {
+        <div class="row justify-content-center align-items-center align-self-center">
+            <p>@giorno[0][0]</p>
+        </div>
+        <div class="row rounded-0 justify-content-center align-items-center align-self-center">
+
+            @foreach (var ora in giorno)
+            {
+                <button type="button" class="btn btn-lg @ora[4] rounded-0" data-toggle="popover" data-html="true" data-placement="bottom" title="@ora[2]" data-content="@ora[3]">@ora[1]</button>
+
+            }
+
+        </div>
+    }
+</div>
+<p>
+    <dl>
+        <dt>Grafico con presenza allarme in base alle seguenti condizioni:</dt>
+        <dd>-   Velocità del vento a 32 metri o 57 m pari o superiore a 20 m/s (72Km/h);</dd>
+        <dd>-   Velocità del vento a 10 m pari o superiore a 15.44 m/s (55.5 Km/h) o velocità del vento a 32 o 57 metri superiore a 16.67 m/s (60Km/h) con presenza contemporanea di fenomeni di “Precipitazioni convettive 1 h precedente > 20 mm” o di “precipitazioni totali 3 h precedente > 30 mm”, o di “phenomena - presenza di temporali e rovesci”;</dd>
+    </dl>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HourOfDay)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ora)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Prectot3h)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cp1h)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ws10m)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ws32m1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ws32m2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ws57m1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ws57m2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sigww)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phenomena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSentLocal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var itemprec = Model.First();
+
+            @foreach (var item in Model)
+            {
+                @if (item.HourOfDay.Date != itemprec.HourOfDay.Date)
+                {
+                    <tr class="blank_row">
+                        <td colspan="11"></td>
+                    </tr>
+
+                }
+                itemprec = item;
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HourOfDay)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ora)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Prectot3h)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cp1h)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ws10m)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ws32m1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ws32m2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ws57m1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ws57m2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sigww)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phenomena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSentLocal)
+        </td>
+        <td>
+            @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> @*|
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+        </td>
+    </tr>
+            }
+        }
+    </tbody>
+</table>
+<script>
+    $(function () {
+
+        $("td").each(function () {
+            //console.log(">"+$.trim($(this).first().text())+"<");
+            if ($.trim($(this).first().text()) == "0") {
+                //console.log($(this).first().text());
+                $(this).first().text("");
+            }
+        });
+
+    });
+</script>
+<meta http-equiv="refresh" content="600">
