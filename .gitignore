@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 
 # Local agent state and generated build artifacts
+appsettings.json
 .pi-loop.json
 .codegraph/
 bin/
