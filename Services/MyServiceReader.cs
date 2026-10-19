@@ -103,7 +103,7 @@ namespace MeteoAlert.Services
 
                                 csvData.Columns.Add(datecolumn);
                             }
-                        
+
                         tableCreated = true;
                     }
                     while (!csvReader.EndOfData)
@@ -128,11 +128,11 @@ namespace MeteoAlert.Services
             }
             catch (Exception ex)
             {
-                
+
                 _logger.LogInformation($"Error:Parsing CSV { ex.Message}");
                 return "Error:Parsing CSV";
             }
-            //if everything goes well, serialize csv to json 
+            //if everything goes well, serialize csv to json
             jsonString = JsonConvert.SerializeObject(csvData);
 
             return jsonString;
@@ -222,11 +222,11 @@ namespace MeteoAlert.Services
                 return false;
             }
 
-            
+
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // Generate a random number  
+            // Generate a random number
             Random random = new Random();
             int randomLessThan10 = random.Next(10);
             //await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
@@ -281,9 +281,9 @@ namespace MeteoAlert.Services
                             {
                                 if (message.Subject.ToLower().Contains("allerta") && !message.Subject.ToLower().Contains(".csv"))
                                 {
-                                    
-                                    string testosms = "Controllare la mail: meteo.taranto@[REDACTED_PRIVATE_REFERENCE].com con oggetto: " + message.Subject;
-                                    string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a Non-ArcelorMittal source**", "").Trim() : "";
+
+                                    string testosms = "Controllare la mail: configured alert mailbox con oggetto: " + message.Subject;
+                                    string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a external source**", "").Trim() : "";
                                     _logger.LogInformation("Rilevato allarme in allerta meteo " + testosms);
                                     //SendSmsMail(message, rubrica, testosms, testomail);
                                     _sendSmsMail.Send(message.SmsInviati, rubrica, testosms, testomail);
@@ -324,8 +324,8 @@ namespace MeteoAlert.Services
                                                 }
                                                 if (presenzaAllerte)
                                                 {
-                                                    string testosms = "Controllare sito meteoalert.[REDACTED_PRIVATE_REFERENCE].int e la mail: meteo.taranto@[REDACTED_PRIVATE_REFERENCE].com con oggetto: " + message.Subject;
-                                                    string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a Non-ArcelorMittal source**", "").Trim() : "";
+                                                    string testosms = "Controllare sito configured weather-alert site e la mail: configured alert mailbox con oggetto: " + message.Subject;
+                                                    string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a external source**", "").Trim() : "";
                                                     //SendSmsMail(message, rubrica, testosms, testomail);
                                                     _sendSmsMail.Send(message.SmsInviati, rubrica, testosms, testomail);
                                                 }
@@ -352,8 +352,8 @@ namespace MeteoAlert.Services
                                                 //    }
                                                 //    if (presenzaAllerte)
                                                 //    {
-                                                //        string testosms = "Controllare sito meteoalert.[REDACTED_PRIVATE_REFERENCE].int e la mail: meteo.taranto@[REDACTED_PRIVATE_REFERENCE].com con oggetto: " + message.Subject;
-                                                //        string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a Non-ArcelorMittal source**", "").Trim() : "";
+                                                //        string testosms = "Controllare sito configured weather-alert site e la mail: configured alert mailbox con oggetto: " + message.Subject;
+                                                //        string testomail = !String.IsNullOrEmpty(message.Content) ? message.Content.Replace("**This Message originated from a external source**", "").Trim() : "";
                                                 //        SendSmsMail(message, context, testosms, testomail);
                                                 //    }
                                             }

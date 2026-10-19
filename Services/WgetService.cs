@@ -756,7 +756,7 @@ namespace MeteoAlert.Services
 
                 /// Nuovo codice per non usare wget per fare upload file
 
-                string sorgenteimmagini = "http://meteoam.[REDACTED_PRIVATE_REFERENCE].int/wp-content/uploads/frames/LAM_TA/LATEST_48_FRAMES_4h/";
+                string sorgenteimmagini = "https://example.invalid/weather/frames/";
 
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(sorgenteimmagini);
@@ -808,7 +808,7 @@ namespace MeteoAlert.Services
                 //////////////// Disabilitato uso di wget
                 ///
                 //// Utilizzo Wget per scaricare le immagini dal sito dell'Aeronautica
-                //string command = @"wget.exe -r -l1 --no-parent ‐‐no-directories -A.png -P ""wwwroot/ImmaginiMeteo"" + ""http://meteoam.[REDACTED_PRIVATE_REFERENCE].int/wp-content/uploads/frames/LAM_TA/LATEST_48_FRAMES_4h/""";
+                //string command = @"wget.exe -r -l1 --no-parent ‐‐no-directories -A.png -P ""wwwroot/ImmaginiMeteo"" + ""https://example.invalid/weather/frames/""";
                 //_logger.LogInformation("comando: "+command);
                 //procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + command);
 
@@ -935,8 +935,8 @@ namespace MeteoAlert.Services
                             if (Color1 != Color2)
                             {
                                 /*
-                                 * Verifico se il pixel diverso cade aall'interno della zona 3 
-                                 * (che comprende anche zona 1 e zona 2). Se è così, esco dal ciclo 
+                                 * Verifico se il pixel diverso cade aall'interno della zona 3
+                                 * (che comprende anche zona 1 e zona 2). Se è così, esco dal ciclo
                                  * e restituisco true
                                  */
                                 if (x > 0 && y > 60)
@@ -994,9 +994,9 @@ namespace MeteoAlert.Services
                         /*
                         15-11-2020 MODIFICA DELL'INVIO SMS
                         OGNI VOLTA CHE SI RILEVA LA PRESENZA DI UN FULMINE SULLA MAPPA
-                        VIENE INVIATO L'SMS DI ALLARME. SE DA QUESTO ISTANTE TRASCORRERA' 
-                        UN'ORA SENZA CHE VENGA RILEVATA LA PRESENZA DI UN FULMINE, VERRA' 
-                        INVIATO UN SMS DI FINE ALLARME 
+                        VIENE INVIATO L'SMS DI ALLARME. SE DA QUESTO ISTANTE TRASCORRERA'
+                        UN'ORA SENZA CHE VENGA RILEVATA LA PRESENZA DI UN FULMINE, VERRA'
+                        INVIATO UN SMS DI FINE ALLARME
                         */
 
                         _oraInizioEventoLampinet = DateTime.Now;
@@ -1041,9 +1041,9 @@ namespace MeteoAlert.Services
                     //}
                     else            //Se ho raggiunto i 3 invii, devo interrompere gli invii per un'ora
                     {
-                        //if (DateTime.Now > _OrarioTerzoInvioSms.AddHours(1))        //Trascorsa un'ora dall'ultimo invio, azzero il contatore 
+                        //if (DateTime.Now > _OrarioTerzoInvioSms.AddHours(1))        //Trascorsa un'ora dall'ultimo invio, azzero il contatore
                         //{
-                        //   _ContInvioSMS = 0; 
+                        //   _ContInvioSMS = 0;
                         //    _OrarioTerzoInvioSms = DateTime.Now;                    //Aggiunto 23/09/2020
                         //}
                     }
@@ -1056,8 +1056,8 @@ namespace MeteoAlert.Services
                      * Con questo controllo maccheronico spero di impedire la partenza del doppio maessaggio di fine allerta,
                      * dovuto al fatto che il programma gira contemporaneamente su due PC e con il load balancing spesso il
                      * controllo rimbalza tra un server e l'altro
-                     * 
-                     * TODO: Per rendere definitiva la risoluzione del problema devo approntare una tabella contenente per ogni 
+                     *
+                     * TODO: Per rendere definitiva la risoluzione del problema devo approntare una tabella contenente per ogni
                      * sequenza l'ora di inizio e l'ora di fine. Trascorsa un'ora dall'ultima scarica elettrica,
                      * invio il messaggio di fine allerta e valorizzo l'ora di fine sequenza. In questo modo il messaggio partirà
                      * solo se come condizione ha una sequenza in corso (Ora di inizio valorizzata, ma senza ora di fine)
@@ -1270,7 +1270,7 @@ namespace MeteoAlert.Services
         //        double[] _diffPerZona = new double[5];
         //        /*
         //         * _diffPerZona[0] = Pixel diversi nella zona 1
-        //         * _diffPerZona[1] = Pixel diversi nella zona 2 
+        //         * _diffPerZona[1] = Pixel diversi nella zona 2
         //         * _diffPerZona[2] = Pixel diversi nella zona 3
         //         * _diffPerZona[3] = Pixel diversi nella zona 4
         //         * _diffPerZona[4] = Totale dei pixel diversi in tutte le zone
