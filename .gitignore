@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Local agent state and generated build artifacts
+.pi-loop.json
+.codegraph/
+bin/
+obj/
+Tests/
